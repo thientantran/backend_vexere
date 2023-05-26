@@ -1,0 +1,42 @@
+khởi tạo project
+	yarn init
+tạo scripts trong package.json
+tạo các thư viện cần thiết
+	yarn add express mysql2 sequelize
+
+tạo thư viện cần thiết cho môi trường dev
+	yarn add sequelize-cli --dev
+
+khởi tạo project với sequelize
+	sequelize init
+
+Tạo file server.js, khai báo express, khi báo express.json, khai báo file static (sử dụng thư viện path để lấy tên file)
+	path.join(__dirname, "./public")
+	app.use(express.static(publicFilePath))
+
+Lắng nghe port 3000
+
+trong file config, thay đổi thông tin, add password và tên database của project
+	sequelize db:create	
+
+import sequelize của models vào server.js để kết nối database
+	const sequelize = requires("./models")
+add source code kiểm tra kết nối db ổn chưa
+
+yarn add nodemon --dev
+cài đặt script ==> yarn dev
+
+read more: https://viblo.asia/p/tao-model-migration-seeds-voi-sequelize-1VgZvOXplAw
+
+Tạo model là bảng trong database,
+	sequelize model:generate --name Station--attributes name:string,address:string,province:string
+	sequelize db:migrate
+
+tạo folder controllers, nơi nhận req từ server gửi lên, xử lý dữ liệu sau đó gửi lại về cho người dùng. => tạo station.controllers.js => để tạo các hàm xử lý req từ server. Ở file controller này cần phải require file từ models vào 
+
+Tạo folder routers, khởi tạo routers cho stations, tạo file index.js trong routers này để combine lại các routers, ==> ở server sẽ chỉ cần file này thôi
+
+
+Servers => routers => controllers => models
+
+
